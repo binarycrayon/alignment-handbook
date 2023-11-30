@@ -33,9 +33,10 @@ def apply_chat_template(
 
     if task in ["sft", "generation"]:
         messages = example["messages"]
+        # Disable the following insert as I'm training Mistral instruct model, which expects user/assistant/user/assistant messages
         # We add an empty system message if there is none
-        if messages[0]["role"] != "system":
-            messages.insert(0, {"role": "system", "content": ""})
+        # if messages[0]["role"] != "system":
+        #     messages.insert(0, {"role": "system", "content": ""})
         example["text"] = tokenizer.apply_chat_template(
             messages, tokenize=False, add_generation_prompt=True if task == "generation" else False
         )
