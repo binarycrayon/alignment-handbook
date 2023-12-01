@@ -35,6 +35,10 @@ MANIFEST
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
+.env 
+CondaENV
+start_linux.sh
+activate_conda.sh
 
 # Unit test / coverage reports
 htmlcov/
@@ -162,3 +166,9 @@ cython_debug/
 # Temp folders
 data/
 wandb/
+
+merged_model/
+jobs_*/
+upload/
+serve_jobs/
+notebooks/
