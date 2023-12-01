@@ -72,6 +72,10 @@ def get_tokenizer(model_args: ModelArguments, data_args: DataArguments) -> PreTr
     # if tokenizer.model_max_length > 100_000:
     #     tokenizer.model_max_length = 2048
 
+    # training for long sequence model
+    if tokenizer.model_max_length < 100_000:
+        tokenizer.model_max_length = 100_000
+
     if data_args.chat_template is not None:
         tokenizer.chat_template = data_args.chat_template
     elif tokenizer.chat_template is None:
