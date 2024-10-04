@@ -22,7 +22,7 @@ from transformers.trainer_utils import get_last_checkpoint
 
 from accelerate import Accelerator
 from huggingface_hub import list_repo_files
-from huggingface_hub.utils._errors import RepositoryNotFoundError
+from huggingface_hub.utils import GatedRepoError, RepositoryNotFoundError
 from huggingface_hub.utils._validators import HFValidationError
 from peft import LoraConfig, PeftConfig
 
@@ -48,7 +48,7 @@ def get_quantization_config(model_args: ModelArguments) -> BitsAndBytesConfig | 
 
         quantization_config = BitsAndBytesConfig(
             load_in_4bit=True,
-            bnb_4bit_compute_dtype=compute_dtype,
+            bnb_4bit_compute_dtype=model_args.bnb_4bit_quant_storage,
             bnb_4bit_quant_type=model_args.bnb_4bit_quant_type,
             bnb_4bit_use_double_quant=model_args.use_bnb_nested_quant,
             bnb_4bit_quant_storage=model_args.bnb_4bit_quant_storage,
